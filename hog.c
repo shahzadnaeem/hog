@@ -83,13 +83,13 @@ void adjustLoad(clock_t startTime, int load)
 
   currentLoad = (int)(100.5 * totalCPUTimeUsed / (double)elapsedTime);
 
-  if (currentLoad > load)
+  if (currentLoad >= load)
   {
     sUsleepTime = sUsleepTime * 2;
 
-    if (sUsleepTime < 100)
+    if (sUsleepTime < 10)
     {
-      sUsleepTime = 100;
+      sUsleepTime = 10;
     }
 
     if (sUsleepTime >= 1000000)
@@ -185,7 +185,8 @@ static int regrab = REGRAB_START;
 
 // We don't need to set all bytes to make it resident
 const int MEM_STRIDE = 64;
-const int STRIDES_PER_CALL = 64;
+// Adjust this many bytes at a time - too high reduces load tracking accuracy
+const int STRIDES_PER_CALL = 10;
 
 void useMemory(long amount, const char *spinner)
 {
@@ -213,7 +214,7 @@ void useMemory(long amount, const char *spinner)
         regrab--;
         if (regrab == 0)
         {
-          grabMemory(amount);
+          // grabMemory(amount);
           regrab = REGRAB_START;
         }
 
