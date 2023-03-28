@@ -36,6 +36,7 @@ Just some CPU
 ## Help
 
 ./hog       -- displays help
+
 ./hog cpus  -- display number of cores and threads on current machine
 
 ## Resonable Values
