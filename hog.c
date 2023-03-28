@@ -313,15 +313,11 @@ void showHelp()
 
 /* ================================================================= */
 
-const char *OPTIONS[] = {
-    "-help",
-    "help"};
-
-int isAnyOf(char *str, const char *options[])
+int isAnyOf(char *str, const char *options[], int num)
 {
   int res = FALSE;
 
-  for (int i = 0; i < sizeof(OPTIONS) / sizeof(char *); i++)
+  for (int i = 0; i < num; i++)
   {
     res = strcasecmp(str, options[i]) == 0;
     if (res)
@@ -331,9 +327,29 @@ int isAnyOf(char *str, const char *options[])
   return res;
 }
 
+const char *INFOS[] = {
+    "cpus",
+    "info",
+};
+
+void showCpusIfNeeded(int argc, char *argv[])
+{
+  if (((argc >= 1) && (isAnyOf(argv[1], INFOS, sizeof(INFOS) / sizeof(const char *)))))
+  {
+    analyseCPUs();
+
+    exit(0);
+  }
+}
+
+const char *OPTIONS[] = {
+    "-help",
+    "help",
+};
+
 void showHelpIfNeeded(int argc, char *argv[])
 {
-  if ((argc == 1) || ((argc >= 1) && (isAnyOf(argv[1], OPTIONS))))
+  if ((argc == 1) || ((argc >= 1) && (isAnyOf(argv[1], OPTIONS, sizeof(OPTIONS) / sizeof(const char *)))))
   {
     showHelp();
 
@@ -341,6 +357,8 @@ void showHelpIfNeeded(int argc, char *argv[])
 
     exit(0);
   }
+
+  showCpusIfNeeded(argc, argv);
 }
 
 /* ================================================================= */

@@ -27,11 +27,16 @@ result in some memory being swapped out as a result
                          which in this case is 0 - use this for a single CPU
                          machine.
 
-./hog `MEM` `CPU` `LOAD`  -- as above except choose CPU` too
+./hog `MEM` `CPU` `LOAD`  -- as above except choose `CPU` too
 
 Just some CPU
 
 ./hog 0 `CPU` `LOAD`  -- just set `MEM` to 0
+
+## Help
+
+./hog       -- displays help
+./hog cpus  -- display number of cores and threads on current machine
 
 ## Resonable Values
 
@@ -43,5 +48,5 @@ paging/swapping
 
 `LOAD` Low values, less than 5%, are hard to achieve
 
-`SPINNER` String to use as spinner chars - "o)" is default
+`SPINNER` Extra parameter to use as spinner chars - "o)" is default
           Try "/-\\|/-" for an actual spinner
