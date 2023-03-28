@@ -111,7 +111,7 @@ void adjustLoad(clock_t startTime, int load)
 #ifdef DEBUG
   if (--sDebugNow == 0)
   {
-    printf("DEBUG> elapsed = %.02f s, cpu = %.02f s, load = %d",
+    printf("  DEBUG> elapsed = %.02f s, cpu = %.02f s, load = %d",
            elapsedTime / 1000.0,
            totalCPUTimeUsed / 1000.0,
            currentLoad);
