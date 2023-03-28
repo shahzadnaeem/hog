@@ -151,7 +151,10 @@ long amount;
 
     if (spPrevGrabbedMemory != 0)
     {
+      // Drop both so we should go back to 0
       free(spPrevGrabbedMemory);
+      free(spGrabbedMemory);
+      spGrabbedMemory = spPrevGrabbedMemory = 0;
     }
 
     spPrevGrabbedMemory = spGrabbedMemory;
