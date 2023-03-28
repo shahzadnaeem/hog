@@ -214,7 +214,7 @@ void useMemory(long amount, const char *spinner)
         regrab--;
         if (regrab == 0)
         {
-          // grabMemory(amount);
+          grabMemory(amount);
           regrab = REGRAB_START;
         }
 
